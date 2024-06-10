@@ -12,8 +12,18 @@ public class LoginView implements View {
 
     @Override
     public void startView() {
-        System.out.println("Login View:");
-        // interagir com o usuário
+        System.out.print("Insira o seu usuário: ");
+        String nome = scanner.nextLine();
+        System.out.print("Insira sua senha: ");
+        String senha = scanner.nextLine();
+
+        Usuario usuario = realizarLogin(nome, senha);
+
+        if (usuario != null) {
+            System.out.println("Login realizado com sucesso. Bem-vindo, " + usuario.getNome());
+        } else {
+            System.out.println("Usuário ou senha inválidos.");
+        }
     }
 
     public Usuario realizarLogin(String nome, String senha) {

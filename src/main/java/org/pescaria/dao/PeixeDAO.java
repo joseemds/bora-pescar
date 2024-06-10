@@ -15,7 +15,7 @@ public class PeixeDAO {
         try {
             database.save(peixe);
         } catch (DatabaseException e) {
-            throw new DAOException("Error saving Peixe: " + e.getMessage());
+            throw new DAOException("Erro ao salvar peixe: " + e.getMessage());
         }
     }
 
@@ -23,7 +23,7 @@ public class PeixeDAO {
         try {
             return database.findAll(Peixe.class);
         } catch (DatabaseException e) {
-            throw new DAOException("Error listing Peixes: " + e.getMessage());
+            throw new DAOException("Erro ao listar peixes: " + e.getMessage());
         }
     }
 }
