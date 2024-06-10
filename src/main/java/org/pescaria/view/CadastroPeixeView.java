@@ -15,9 +15,9 @@ public class CadastroPeixeView implements View {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Cadastro de Peixe:");
 
-		var especie = scanner.next();
-		var descricao = scanner.next();
-		var peixe = new Peixe(especie, descricao);
+		String especie = scanner.next();
+		String descricao = scanner.next();
+		Peixe peixe = new Peixe(especie, descricao);
 		try {
 			peixeService.cadastrarPeixe(peixe);
 			System.out.println("Peixe cadastrado com sucesso.");
