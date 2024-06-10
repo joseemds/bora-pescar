@@ -20,12 +20,13 @@ public class PescariaService {
         return pescariaDAO.listarTodas();
     }
 
-    public List<Peixe> listarPeixesAcimaDePeso(double pesoMinimo) throws DAOException {
-        List<Peixe> peixes = peixeDAO.listarTodos();
-        return peixes.stream()
-                .filter(peixe -> peixe.getPeso() > pesoMinimo)
-                .toList();
-    }
+		// TODO
+    // public List<Peixe> listarPeixesAcimaDePeso(double pesoMinimo) throws DAOException {
+    //     List<Peixe> peixes = peixeDAO.listarTodos();
+    //     return peixes.stream()
+    //             .filter(peixe -> peixe.getPeso() > pesoMinimo)
+    //             .toList();
+    // }
 
     public Pescaria obterPescariaPorId(int id) throws DAOException {
         return pescariaDAO.obterPorId(id);
