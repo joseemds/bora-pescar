@@ -2,8 +2,6 @@ package org.pescaria.view;
 
 import java.util.Scanner;
 
-import org.pescaria.entity.Peixe;
-
 public class MainView implements View {
 	private LoginView loginView = new LoginView();
 	private PescariaView pescariaView = new PescariaView();
