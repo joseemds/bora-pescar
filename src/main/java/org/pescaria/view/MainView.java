@@ -35,7 +35,7 @@ public class MainView implements View {
                 pescariaView.listarPescarias();
                 break;
             case 5:
-                cadastroPeixeView.listarPeixes();
+                // cadastroPeixeView.cadastrarPeixe();
                 break;
             case 0:
                 System.out.println("Até mais!");

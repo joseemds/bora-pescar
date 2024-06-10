@@ -4,7 +4,6 @@ import org.pescaria.dao.PescariaDAO;
 import org.pescaria.dao.PeixeDAO;
 import org.pescaria.entity.Pescaria;
 import org.pescaria.entity.Peixe;
-import org.pescaria.entity.PeixeUnico;
 import org.pescaria.exception.DAOException;
 
 import java.util.List;
@@ -24,7 +23,7 @@ public class PescariaService {
     public List<Peixe> listarPeixesAcimaDePeso(double pesoMinimo) throws DAOException {
         List<Peixe> peixes = peixeDAO.listarTodos();
         return peixes.stream()
-                .filter(peixe -> peixe instanceof PeixeUnico && ((PeixeUnico) peixe).getPeso() > pesoMinimo)
+                .filter(peixe -> peixe.getPeso() > pesoMinimo)
                 .toList();
     }
 

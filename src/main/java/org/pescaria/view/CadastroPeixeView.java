@@ -4,18 +4,16 @@ import org.pescaria.entity.Peixe;
 import org.pescaria.service.PeixeService;
 import org.pescaria.exception.DAOException;
 
-import java.util.Scanner;
-
 public class CadastroPeixeView implements View {
     private PeixeService peixeService = new PeixeService();
-    private Scanner scanner = new Scanner(System.in);
 
     @Override
     public void startView() {
         System.out.println("Cadastro de Peixe:");
-        // interagindo com o usuário
     }
 
+
+		// TODO: Passar pra um service
     public void cadastrarPeixe(Peixe peixe) {
         try {
             peixeService.cadastrarPeixe(peixe);
