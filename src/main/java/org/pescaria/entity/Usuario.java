@@ -53,10 +53,6 @@ public class Usuario extends Entity {
 
     @Override
     public String toString() {
-        return "Usuario{" +
-                "id=" + getId() +
-                ", nome='" + nome + '\'' +
-                ", tipo=" + tipo +
-                '}';
+        return "Usuario{" + "id=" + getId() + ", nome='" + nome + '\'' + ", tipo=" + tipo + '}';
     }
 }

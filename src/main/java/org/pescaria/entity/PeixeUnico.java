@@ -55,11 +55,6 @@ public class PeixeUnico extends Entity {
 
     @Override
     public String toString() {
-        return "PeixeUnico{" +
-                "id=" + getId() +
-                ", peixe=" + peixe +
-                ", peso=" + peso +
-                ", tamanho=" + tamanho +
-                '}';
+        return "PeixeUnico{" + "id=" + getId() + ", peixe=" + peixe + ", peso=" + peso + ", tamanho=" + tamanho + '}';
     }
 }

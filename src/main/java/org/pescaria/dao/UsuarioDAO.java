@@ -12,8 +12,7 @@ public class UsuarioDAO {
     public Usuario obterPorNomeSenha(String nome, String senha) throws DAOException {
         try {
             return database.findAll(Usuario.class).stream()
-                    .filter(usuario -> usuario.getNome().equals(nome) && usuario.getSenha().equals(senha))
-                    .findFirst()
+                    .filter(usuario -> usuario.getNome().equals(nome) && usuario.getSenha().equals(senha)).findFirst()
                     .orElseThrow(() -> new EntityNotFoundException("User not found"));
         } catch (DatabaseException e) {
             throw new DAOException("Error fetching user: " + e.getMessage());

@@ -43,10 +43,6 @@ public class Peixe extends Entity {
 
     @Override
     public String toString() {
-        return "Peixe{" +
-                "id=" + getId() +
-                ", especie='" + especie + '\'' +
-                ", descricao='" + descricao + '\'' +
-                '}';
+        return "Peixe{" + "id=" + getId() + ", especie='" + especie + '\'' + ", descricao='" + descricao + '\'' + '}';
     }
 }

@@ -7,5 +7,5 @@ import java.util.function.*;
 
 import org.pescaria.entity.*;
 
-public interface Dao{}
-	
+public interface Dao {
+}

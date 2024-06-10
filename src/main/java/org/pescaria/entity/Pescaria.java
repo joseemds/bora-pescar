@@ -55,11 +55,7 @@ public class Pescaria extends Entity {
 
     @Override
     public String toString() {
-        return "Pescaria{" +
-                "id=" + getId() +
-                ", data=" + data +
-                ", local='" + local + '\'' +
-                ", peixes=" + peixes +
-                '}';
+        return "Pescaria{" + "id=" + getId() + ", data=" + data + ", local='" + local + '\'' + ", peixes=" + peixes
+                + '}';
     }
 }
