@@ -32,13 +32,13 @@ public class MainView implements View {
                 cadastroPeixeView.startView();
                 break;
             case 3:
-                pescariaView.startView();
+                cadastroPeixeView.startView();
                 break;
             case 4:
                 pescariaView.listarPescarias();
                 break;
             case 5:
-                cadastroPeixeView.startView();
+                pescariaView.startView();
                 break;
             case 6:
                 cadastroUsuarioView.startView();
