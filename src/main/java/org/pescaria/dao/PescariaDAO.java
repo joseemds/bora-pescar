@@ -15,7 +15,7 @@ public class PescariaDAO {
         try {
             database.save(pescaria);
         } catch (DatabaseException e) {
-            throw new DAOException("Error saving Pescaria: " + e.getMessage());
+            throw new DAOException("Erro ao salvar pescaria" + e.getMessage());
         }
     }
 
@@ -23,7 +23,7 @@ public class PescariaDAO {
         try {
             return database.findAll(Pescaria.class);
         } catch (DatabaseException e) {
-            throw new DAOException("Error listing Pescarias: " + e.getMessage());
+            throw new DAOException("Erro ao listar pescarias" + e.getMessage());
         }
     }
 
@@ -31,7 +31,7 @@ public class PescariaDAO {
         try {
             return database.findById(Pescaria.class, id);
         } catch (EntityNotFoundException e) {
-            throw new DAOException("Pescaria not found: " + e.getMessage());
+            throw new DAOException("Pescaria não encontrada: " + e.getMessage());
         }
     }
 }

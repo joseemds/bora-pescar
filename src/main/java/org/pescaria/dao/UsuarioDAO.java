@@ -23,7 +23,7 @@ public class UsuarioDAO {
                     .filter(usuario -> usuario.getNome().equals(nome) && usuario.getSenha().equals(senha)).findFirst()
                     .orElseThrow(() -> new EntityNotFoundException("Usuário não encontrado"));
         } catch (DatabaseException e) {
-            throw new DAOException("Error fetching user: " + e.getMessage());
+            throw new DAOException("Erro buscando usuário: " + e.getMessage());
         }
     }
 }

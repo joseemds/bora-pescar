@@ -4,7 +4,6 @@ import org.pescaria.database.Database;
 import org.pescaria.entity.Peixe;
 import org.pescaria.exception.DAOException;
 import org.pescaria.exception.DatabaseException;
-import org.pescaria.exception.EntityNotFoundException;
 
 import java.util.List;
 
