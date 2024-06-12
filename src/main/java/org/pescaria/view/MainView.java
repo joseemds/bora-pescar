@@ -25,30 +25,30 @@ public class MainView implements View {
         scanner.nextLine();
 
         switch (opcao) {
-            case 1:
-                loginView.startView();
-                break;
-            case 2:
-                cadastroPeixeView.startView();
-                break;
-            case 3:
-                cadastroPeixeView.startView();
-                break;
-            case 4:
-                pescariaView.listarPescarias();
-                break;
-            case 5:
-                pescariaView.startView();
-                break;
-            case 6:
-                cadastroUsuarioView.startView();
-                break;
-            case 0:
-                System.out.println("Até mais!");
-                break;
-            default:
-                System.out.println("Opção inválida.");
-                break;
+        case 1:
+            loginView.startView();
+            break;
+        case 2:
+            cadastroPeixeView.startView();
+            break;
+        case 3:
+            cadastroPeixeView.startView();
+            break;
+        case 4:
+            pescariaView.listarPescarias();
+            break;
+        case 5:
+            pescariaView.startView();
+            break;
+        case 6:
+            cadastroUsuarioView.startView();
+            break;
+        case 0:
+            System.out.println("Até mais!");
+            break;
+        default:
+            System.out.println("Opção inválida.");
+            break;
         }
 
         if (opcao != 0) {
