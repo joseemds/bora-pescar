@@ -1,5 +1,6 @@
 package org.pescaria.entity;
 
 public enum TipoUsuario {
-    ADMIN, COMUM
+    ADMIN,
+    COMUM;
 }

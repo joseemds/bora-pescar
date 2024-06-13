@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class LoginView implements View {
     private UsuarioService usuarioService = new UsuarioService();
     private Scanner scanner = new Scanner(System.in);
+    private Usuario usuarioLogado;
 
     @Override
     public void startView() {
@@ -20,6 +21,7 @@ public class LoginView implements View {
         Usuario usuario = realizarLogin(nome, senha);
 
         if (usuario != null) {
+            usuarioLogado = usuario;
             System.out.println("Login realizado com sucesso. Bem-vindo, " + usuario.getNome());
         } else {
             System.out.println("Usuário ou senha inválidos.");
@@ -33,5 +35,9 @@ public class LoginView implements View {
             System.err.println("Erro ao realizar login: " + e.getMessage());
             return null;
         }
+    }
+
+    public Usuario getUsuarioLogado() {
+        return usuarioLogado;
     }
 }
