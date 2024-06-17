@@ -17,10 +17,16 @@ public class Database {
         tables.put(Peixe.class, new DatabaseTable<Peixe>());
         tables.put(Usuario.class, new DatabaseTable<Usuario>());
 
-        // admin mokado
+        // Dados mokados
         try {
-            Usuario admin = new Usuario("dudu", "cachorro", TipoUsuario.ADMIN);
+            Usuario admin = new Usuario("dudu", "dudu", TipoUsuario.ADMIN);
+            Peixe peixe1 = new Peixe("Tilápia", "Peixe de água doce");
+            Peixe peixe2 = new Peixe("Tucunaré", "Peixe de água doce");
+            Peixe peixe3 = new Peixe("Dourado", "Peixe de água doce");
             save(admin);
+            save(peixe1);
+            save(peixe2);
+            save(peixe3);
         } catch (DatabaseException e) {
             e.printStackTrace();
         }

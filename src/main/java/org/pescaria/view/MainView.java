@@ -6,6 +6,7 @@ import org.pescaria.service.AuthService;
 public class MainView implements View {
 	private LoginView loginView = new LoginView();
 	private PescariaView pescariaView = new PescariaView();
+	private PeixeView peixeView = new PeixeView();
 	private CadastroPeixeView cadastroPeixeView;
 	private CadastroUsuarioView cadastroUsuarioView = new CadastroUsuarioView();
 	private Scanner scanner = new Scanner(System.in);
@@ -77,7 +78,7 @@ public class MainView implements View {
 				pescariaView.listarPescarias();
 				break;
 			case 4:
-				pescariaView.startView();
+				peixeView.startView();
 				break;
 			case 5:
 				AuthService.logout();

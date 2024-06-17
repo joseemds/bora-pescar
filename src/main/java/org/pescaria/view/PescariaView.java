@@ -17,6 +17,7 @@ public class PescariaView implements View {
     private PescariaService pescariaService = new PescariaService();
     private PeixeService peixeService = new PeixeService();
     private Scanner scanner = new Scanner(System.in);
+    private PeixeView peixeView = new PeixeView();
 
     @Override
     public void startView() {
@@ -30,18 +31,12 @@ public class PescariaView implements View {
 
         // O usuário irá inserir quantos peixes pegou, rodamos a quantidade num for e
         // inserimos os peixes num array
-        System.out.print("Quantos peixes você pegou?");
+        System.out.println("Quantos peixes você pegou? ");
         int qtdPeixes = scanner.nextInt();
         scanner.nextLine();
         List<PeixeUnico> peixes = new ArrayList<>();
 
-        System.out.println("Lista de peixes: ");
-        try {
-            peixeService.listarPeixes();
-        } catch (DAOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        peixeView.startView();
 
         for (int i = 0; i < qtdPeixes; i++) {
 
@@ -81,7 +76,20 @@ public class PescariaView implements View {
     }
 
     public void listarPescarias() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'listarPescarias'");
+        try {
+            List<Pescaria> pescarias = pescariaService.listarPescaria();
+            System.out.println("Lista de Pescarias:");
+            for (Pescaria pescaria : pescarias) {
+                System.out.println("ID: " + pescaria.getId() + ", Data: " + pescaria.getData() + ", Local: "
+                        + pescaria.getLocal());
+                System.out.println("Peixes pescados:");
+                List<PeixeUnico> listaPeixes = pescaria.getPeixes();
+                for (PeixeUnico peixe : listaPeixes) {
+                    System.out.println(peixe);
+                }
+            }
+        } catch (DAOException e) {
+            System.err.println("Erro ao listar pescarias: " + e.getMessage());
+        }
     }
 }
