@@ -7,6 +7,8 @@ import org.pescaria.entity.Peixe;
 import org.pescaria.exception.DAOException;
 
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class PescariaService {
     private PescariaDAO pescariaDAO = new PescariaDAO();
@@ -22,7 +24,7 @@ public class PescariaService {
 
     public List<Pescaria> listarPescariaUsuario() throws DAOException {
         return pescariaDAO.listarTodas().stream()
-                .filter(pescaria -> pescaria.getUsuario() == AuthService.getAutenticado()).toList();
+                .filter(pescaria -> pescaria.getUsuario() == AuthService.getAutenticado()).collect(Collectors.toList());
     }
 
     // TODO
