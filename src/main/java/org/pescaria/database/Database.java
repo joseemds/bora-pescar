@@ -17,7 +17,7 @@ public class Database {
         tables.put(Peixe.class, new DatabaseTable<Peixe>());
         tables.put(Usuario.class, new DatabaseTable<Usuario>());
 
-        // Dados mokados
+        // Dados mockados
         try {
             Usuario admin = new Usuario("dudu", "dudu", TipoUsuario.ADMIN);
             Peixe peixe1 = new Peixe("Tilápia", "Peixe de água doce");

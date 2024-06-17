@@ -9,30 +9,35 @@ import org.pescaria.exception.DAOException;
 import java.util.List;
 
 public class PescariaService {
-    private PescariaDAO pescariaDAO = new PescariaDAO();
-    private PeixeDAO peixeDAO = new PeixeDAO();
+	private PescariaDAO pescariaDAO = new PescariaDAO();
+	private PeixeDAO peixeDAO = new PeixeDAO();
 
-    public void cadastrarPescaria(Pescaria pescaria) throws DAOException {
-        pescariaDAO.salvarPescaria(pescaria);
-    }
+	public void cadastrarPescaria(Pescaria pescaria) throws DAOException {
+		pescariaDAO.salvarPescaria(pescaria);
+	}
 
-    public List<Pescaria> listarPescaria() throws DAOException {
-        return pescariaDAO.listarTodas();
-    }
+	public List<Pescaria> listarPescaria() throws DAOException {
+		return pescariaDAO.listarTodas();
+	}
 
-    // TODO
-    // public List<Peixe> listarPeixesAcimaDePeso(double pesoMinimo) throws DAOException {
-    // List<Peixe> peixes = peixeDAO.listarTodos();
-    // return peixes.stream()
-    // .filter(peixe -> peixe.getPeso() > pesoMinimo)
-    // .toList();
-    // }
+	public List<Pescaria> listarPescariaUsuario() throws DAOException {
+		return pescariaDAO.listarTodas().stream().filter(pescaria -> pescaria.getUsuario() == AuthService.getAutenticado()).toList();
+	}
 
-    public Pescaria obterPescariaPorId(int id) throws DAOException {
-        return pescariaDAO.obterPorId(id);
-    }
+	// TODO
+	// public List<Peixe> listarPeixesAcimaDePeso(double pesoMinimo) throws
+	// DAOException {
+	// List<Peixe> peixes = peixeDAO.listarTodos();
+	// return peixes.stream()
+	// .filter(peixe -> peixe.getPeso() > pesoMinimo)
+	// .toList();
+	// }
 
-    public List<Peixe> obterListaPeixes() throws DAOException {
-        return peixeDAO.listarTodos();
-    }
+	public Pescaria obterPescariaPorId(int id) throws DAOException {
+		return pescariaDAO.obterPorId(id);
+	}
+
+	public List<Peixe> obterListaPeixes() throws DAOException {
+		return peixeDAO.listarTodos();
+	}
 }

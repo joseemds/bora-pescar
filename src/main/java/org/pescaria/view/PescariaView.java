@@ -11,6 +11,7 @@ import org.pescaria.entity.PeixeUnico;
 import org.pescaria.entity.Pescaria;
 import org.pescaria.exception.DAOException;
 import org.pescaria.service.PescariaService;
+import org.pescaria.service.AuthService;
 import org.pescaria.service.PeixeService;
 
 public class PescariaView implements View {
@@ -46,7 +47,6 @@ public class PescariaView implements View {
             try {
                 peixeEscolhido = peixeService.encontrarPorId(idPeixe);
             } catch (DAOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
 
@@ -61,7 +61,7 @@ public class PescariaView implements View {
             peixes.add(peixeUnico);
         }
 
-        Pescaria pescaria = new Pescaria(date, local, peixes);
+        Pescaria pescaria = new Pescaria(date, local, peixes, AuthService.getAutenticado());
         cadastrarPescaria(pescaria);
 
     }
@@ -77,7 +77,7 @@ public class PescariaView implements View {
 
     public void listarPescarias() {
         try {
-            List<Pescaria> pescarias = pescariaService.listarPescaria();
+            List<Pescaria> pescarias = pescariaService.listarPescariaUsuario();
             System.out.println("Lista de Pescarias:");
             for (Pescaria pescaria : pescarias) {
                 System.out.println("ID: " + pescaria.getId() + ", Data: " + pescaria.getData() + ", Local: "
