@@ -7,18 +7,18 @@ public class Pescaria extends Entity {
     private LocalDate data;
     private String local;
     private List<PeixeUnico> peixes;
-		private Usuario usuario;
+    private Usuario usuario;
 
     public Pescaria(LocalDate data, String local, List<PeixeUnico> peixes, Usuario usuario) {
         this.data = data;
         this.local = local;
         this.peixes = peixes;
-				this.usuario = usuario;
+        this.usuario = usuario;
     }
 
-		public Usuario getUsuario(){
-			return this.usuario;
-		}
+    public Usuario getUsuario() {
+        return this.usuario;
+    }
 
     public LocalDate getData() {
         return data;
