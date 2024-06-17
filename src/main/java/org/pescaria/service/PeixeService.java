@@ -16,4 +16,8 @@ public class PeixeService {
     public List<Peixe> listarPeixes() throws DAOException {
         return peixeDAO.listarTodos();
     }
+
+    public Peixe encontrarPorId(int id) throws DAOException {
+        return peixeDAO.encontrarPorId(id);
+    }
 }

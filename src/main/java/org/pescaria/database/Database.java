@@ -16,6 +16,14 @@ public class Database {
         tables.put(Pescaria.class, new DatabaseTable<Pescaria>());
         tables.put(Peixe.class, new DatabaseTable<Peixe>());
         tables.put(Usuario.class, new DatabaseTable<Usuario>());
+
+        // admin mokado
+        try {
+            Usuario admin = new Usuario("dudu", "cachorro", TipoUsuario.ADMIN);
+            save(admin);
+        } catch (DatabaseException e) {
+            e.printStackTrace();
+        }
     }
 
     public static synchronized Database getInstance() {

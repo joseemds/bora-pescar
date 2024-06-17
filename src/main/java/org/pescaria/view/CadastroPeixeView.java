@@ -12,7 +12,7 @@ public class CadastroPeixeView implements View {
 
 	@Override
 	public void startView() {
-		if (!AuthService.isAdmin()){
+		if (!AuthService.isAdmin()) {
 			System.out.println("Apenas administradores podem cadastrar peixes.");
 			return;
 		}
@@ -30,8 +30,6 @@ public class CadastroPeixeView implements View {
 			System.out.println("Peixe cadastrado com sucesso.");
 		} catch (DAOException e) {
 			System.err.println("Erro ao cadastrar peixe: " + e.getMessage());
-		} finally {
-			scanner.close();
 		}
 	}
 

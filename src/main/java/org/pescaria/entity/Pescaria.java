@@ -1,24 +1,25 @@
 package org.pescaria.entity;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
 public class Pescaria extends Entity {
-    private Date data;
+    private LocalDate data;
     private String local;
     private List<PeixeUnico> peixes;
 
-    public Pescaria(Date data, String local, List<PeixeUnico> peixes) {
+    public Pescaria(LocalDate data, String local, List<PeixeUnico> peixes) {
         this.data = data;
         this.local = local;
         this.peixes = peixes;
     }
 
-    public Date getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 

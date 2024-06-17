@@ -5,7 +5,6 @@ public class PeixeUnico extends Entity {
     private double peso;
     private double tamanho;
 
-    // Construtor sem id, pois o id é gerado automaticamente pelo banco de dados
     public PeixeUnico(Peixe peixe, double peso, double tamanho) {
         this.peixe = peixe;
         this.peso = peso;

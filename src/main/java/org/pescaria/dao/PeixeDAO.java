@@ -20,9 +20,18 @@ public class PeixeDAO {
 
     public List<Peixe> listarTodos() throws DAOException {
         try {
+            // Printa a lista de peixes assim: "id - nome"
             return database.findAll(Peixe.class);
         } catch (DatabaseException e) {
             throw new DAOException("Erro ao listar peixes: " + e.getMessage());
+        }
+    }
+
+    public Peixe encontrarPorId(int id) throws DAOException {
+        try {
+            return database.findById(Peixe.class, id);
+        } catch (DatabaseException e) {
+            throw new DAOException("Erro ao encontrar peixe por id: " + e.getMessage());
         }
     }
 }
