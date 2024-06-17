@@ -51,10 +51,10 @@ public class PescariaView implements View {
             }
 
             scanner.nextLine();
-            System.out.print("Digite o peso do peixe: ");
+            System.out.print("Digite o peso do peixe (g): ");
             double peso = scanner.nextDouble();
             scanner.nextLine();
-            System.out.print("Digite o tamanho do peixe: ");
+            System.out.print("Digite o tamanho do peixe (cm): ");
             double tamanho = scanner.nextDouble();
             scanner.nextLine();
             PeixeUnico peixeUnico = new PeixeUnico(peixeEscolhido, peso, tamanho);
