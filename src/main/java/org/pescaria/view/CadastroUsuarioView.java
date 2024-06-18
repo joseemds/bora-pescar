@@ -17,16 +17,17 @@ public class CadastroUsuarioView implements View {
         String nome = scanner.nextLine();
         System.out.print("Senha: ");
         String senha = scanner.nextLine();
-        System.out.print("Usuário administrador? (S/N): ");
-        String simOuNao = scanner.nextLine();
+        // System.out.print("Usuário administrador? (S/N): ");
+        // String simOuNao = scanner.nextLine();
 
-        while (!simOuNao.equalsIgnoreCase("S") && !simOuNao.equalsIgnoreCase("N")) {
-            System.out.print("Usuário administrador? (S/N): ");
-            simOuNao = scanner.nextLine();
-        }
+        // while (!simOuNao.equalsIgnoreCase("S") && !simOuNao.equalsIgnoreCase("N")) {
+        // System.out.print("Usuário administrador? (S/N): ");
+        // simOuNao = scanner.nextLine();
+        // }
 
-        TipoUsuario tipoUsuario = simOuNao.equalsIgnoreCase("S") ? TipoUsuario.ADMIN : TipoUsuario.COMUM;
-        Usuario usuario = new Usuario(nome, senha, tipoUsuario);
+        // TipoUsuario tipoUsuario = simOuNao.equalsIgnoreCase("S") ? TipoUsuario.ADMIN
+        // : TipoUsuario.COMUM;
+        Usuario usuario = new Usuario(nome, senha, TipoUsuario.COMUM);
 
         try {
             usuarioService.cadastrarUsuario(usuario);

@@ -22,6 +22,34 @@ public class PescariaView implements View {
 
     @Override
     public void startView() {
+        System.out.println("Menu de Pesca");
+        System.out.println("1 - Cadastrar nova pescaria");
+        System.out.println("2 - Ver minhas pescas");
+        System.out.println("3 - Ver todos os peixes que já peguei");
+        System.out.println("0 - Voltar");
+
+        int opcao = scanner.nextInt();
+        scanner.nextLine();
+
+        switch (opcao) {
+            case 1:
+                inserirDadosPescaria();
+            case 2:
+                listarPescarias();
+                break;
+            case 3:
+                listarPeixesMenu();
+                break;
+
+            case 0:
+                return;
+            default:
+                System.out.println("Opção inválida.");
+                break;
+        }
+    }
+
+    public void inserirDadosPescaria() {
         System.out.println("Vamos cadastrar uma nova pescaria.");
         System.out.print("Digite a data (dd/mm/yyyy): ");
         String dateStr = scanner.nextLine();
@@ -90,6 +118,35 @@ public class PescariaView implements View {
             }
         } catch (DAOException e) {
             System.err.println("Erro ao listar pescarias: " + e.getMessage());
+        }
+    }
+
+    public void listarPeixesMenu() {
+        System.out.println("================================");
+        System.out.println("1 - Listar por tamanho");
+        System.out.println("2 - Listar por peso");
+
+        int opcao = scanner.nextInt();
+        scanner.nextLine();
+
+        switch (opcao) {
+            case 1:
+                listarPeixesComFiltro("tamanho");
+                break;
+            case 2:
+                listarPeixesComFiltro("peso");
+                break;
+            default:
+                System.out.println("Opção inválida.");
+                break;
+        }
+    }
+
+    public void listarPeixesComFiltro(String filtro) {
+        if (filtro == "tamanho") {
+            System.out.println("filtro 1");
+        } else if (filtro == "peso") {
+            System.out.println("filtro 2");
         }
     }
 }
