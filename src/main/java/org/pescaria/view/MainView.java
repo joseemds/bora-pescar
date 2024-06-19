@@ -33,19 +33,19 @@ public class MainView implements View {
         scanner.nextLine();
 
         switch (opcao) {
-            case 1:
-                loginView.startView();
-                break;
-            case 2:
-                cadastroUsuarioView.startView();
-                break;
-            case 0:
-                System.out.println("Até mais!");
-                System.exit(0);
-                break;
-            default:
-                System.out.println("Opção inválida.");
-                break;
+        case 1:
+            loginView.startView();
+            break;
+        case 2:
+            cadastroUsuarioView.startView();
+            break;
+        case 0:
+            System.out.println("Até mais!");
+            System.exit(0);
+            break;
+        default:
+            System.out.println("Opção inválida.");
+            break;
         }
     }
 
@@ -62,31 +62,31 @@ public class MainView implements View {
         scanner.nextLine();
 
         switch (opcao) {
-            case 1:
-                if (AuthService.isAutenticado() && AuthService.isAdmin()) {
-                    cadastroPeixeView = new CadastroPeixeView();
-                    cadastroPeixeView.startView();
-                } else {
-                    System.out.println("Apenas administradores podem cadastrar peixes.");
-                }
-                break;
-            case 2:
-                pescariaView.startView();
-                break;
-            case 3:
-                peixeView.startView();
-                break;
-            case 4:
-                AuthService.logout();
-                System.out.println("Logout realizado com sucesso.");
-                break;
-            case 0:
-                System.out.println("Até mais!");
-                System.exit(0);
-                break;
-            default:
-                System.out.println("Opção inválida.");
-                break;
+        case 1:
+            if (AuthService.isAutenticado() && AuthService.isAdmin()) {
+                cadastroPeixeView = new CadastroPeixeView();
+                cadastroPeixeView.startView();
+            } else {
+                System.out.println("Apenas administradores podem cadastrar peixes.");
+            }
+            break;
+        case 2:
+            pescariaView.startView();
+            break;
+        case 3:
+            peixeView.startView();
+            break;
+        case 4:
+            AuthService.logout();
+            System.out.println("Logout realizado com sucesso.");
+            break;
+        case 0:
+            System.out.println("Até mais!");
+            System.exit(0);
+            break;
+        default:
+            System.out.println("Opção inválida.");
+            break;
         }
     }
 }

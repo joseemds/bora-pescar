@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 import org.pescaria.entity.Peixe;
 import org.pescaria.entity.PeixeUnico;
@@ -32,20 +33,20 @@ public class PescariaView implements View {
         scanner.nextLine();
 
         switch (opcao) {
-            case 1:
-                inserirDadosPescaria();
-            case 2:
-                listarPescarias();
-                break;
-            case 3:
-                listarPeixesMenu();
-                break;
+        case 1:
+            inserirDadosPescaria();
+        case 2:
+            listarPescarias();
+            break;
+        case 3:
+            listarPeixesMenu();
+            break;
 
-            case 0:
-                return;
-            default:
-                System.out.println("Opção inválida.");
-                break;
+        case 0:
+            return;
+        default:
+            System.out.println("Opção inválida.");
+            break;
         }
     }
 
@@ -125,28 +126,97 @@ public class PescariaView implements View {
         System.out.println("================================");
         System.out.println("1 - Listar por tamanho");
         System.out.println("2 - Listar por peso");
+        System.out.println("3 - Listar por data");
+        System.out.println("4 - Listar agrupado");
 
         int opcao = scanner.nextInt();
         scanner.nextLine();
 
         switch (opcao) {
-            case 1:
-                listarPeixesComFiltro("tamanho");
-                break;
-            case 2:
-                listarPeixesComFiltro("peso");
-                break;
-            default:
-                System.out.println("Opção inválida.");
-                break;
+        case 1:
+            listarPeixesPorTamanho();
+            break;
+        case 2:
+            listarPeixesPorPeso();
+            break;
+        case 3:
+            listarPescariasPorData();
+            break;
+        case 4:
+            listarPescariasAgrupado();
+            break;
+        default:
+            System.out.println("Opção inválida.");
+            break;
         }
     }
 
-    public void listarPeixesComFiltro(String filtro) {
-        if (filtro == "tamanho") {
-            System.out.println("filtro 1");
-        } else if (filtro == "peso") {
-            System.out.println("filtro 2");
+    private void listarPeixesPorTamanho() {
+        try {
+            var peixesPorTamanho = pescariaService.listarPescariaUsuario().stream()
+                    .flatMap(pescaria -> pescaria.getPeixes().stream())
+                    .sorted((p1, p2) -> Double.compare(p2.getTamanho(), p1.getTamanho())).collect(Collectors.toList());
+
+            for (var peixe : peixesPorTamanho) {
+                System.out.println(peixe);
+            }
+
+        } catch (DAOException e) {
+            System.err.println("Erro ao listar pescarias: " + e.getMessage());
+        }
+    }
+
+    private void listarPeixesPorPeso() {
+        try {
+
+            var peixesPorPeso = pescariaService.listarPescariaUsuario().stream()
+                    .flatMap(pescaria -> pescaria.getPeixes().stream())
+                    .sorted((p1, p2) -> Double.compare(p2.getPeso(), p1.getPeso())).collect(Collectors.toList());
+
+            for (var peixe : peixesPorPeso) {
+                System.out.println(peixe);
+            }
+        } catch (DAOException e) {
+
+            System.err.println("Erro ao listar pescarias: " + e.getMessage());
+        }
+
+    }
+
+    private void listarPescariasPorData() {
+        try {
+
+            System.out.print("Digite a data (dd/mm/yyyy): ");
+            String dateStr = scanner.nextLine();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate date = LocalDate.parse(dateStr, formatter);
+            var pescariasFiltradas = pescariaService.listarPescariaUsuario().stream()
+                    .filter(pescaria -> pescaria.getData().isAfter(date) || pescaria.getData().isEqual(date))
+                    .flatMap(pescaria -> pescaria.getPeixes().stream()).collect(Collectors.toList());
+
+            for (var pescaria : pescariasFiltradas) {
+                System.out.println(pescaria);
+            }
+
+        } catch (DAOException e) {
+            System.err.println("Erro ao listar pescarias: " + e.getMessage());
+
+        }
+
+    }
+
+    private void listarPescariasAgrupado() {
+        try {
+            var agrupados = pescariaService.listarPescariaUsuario().stream()
+                    .flatMap(pescaria -> pescaria.getPeixes().stream())
+                    .collect(Collectors.groupingBy(peixe -> peixe.getPeixe().getEspecie(), Collectors.counting()));
+
+            for (var peixes : agrupados.entrySet()) {
+                System.out.printf("%s : %d\n", peixes.getKey(), peixes.getValue());
+            }
+
+        } catch (DAOException e) {
+            System.err.println("Erro ao listar pescarias: " + e.getMessage());
         }
     }
 }
