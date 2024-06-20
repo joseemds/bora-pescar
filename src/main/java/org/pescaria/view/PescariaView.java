@@ -2,7 +2,10 @@ package org.pescaria.view;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.EmptyStackException;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -20,10 +23,12 @@ public class PescariaView implements View {
     private PeixeService peixeService = new PeixeService();
     private Scanner scanner = new Scanner(System.in);
     private PeixeView peixeView = new PeixeView();
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLUE = "\u001B[34m";
 
     @Override
     public void startView() {
-        System.out.println("Menu de Pesca");
+        System.out.println(ANSI_BLUE + "Menu de Pesca" + ANSI_RESET);
         System.out.println("1 - Cadastrar nova pescaria");
         System.out.println("2 - Ver minhas pescas");
         System.out.println("3 - Ver todos os peixes que já peguei");
@@ -33,36 +38,56 @@ public class PescariaView implements View {
         scanner.nextLine();
 
         switch (opcao) {
-        case 1:
-            inserirDadosPescaria();
-        case 2:
-            listarPescarias();
-            break;
-        case 3:
-            listarPeixesMenu();
-            break;
+            case 1:
+                inserirDadosPescaria();
+            case 2:
+                listarPescarias();
+                break;
+            case 3:
+                listarPeixesMenu();
+                break;
 
-        case 0:
-            return;
-        default:
-            System.out.println("Opção inválida.");
-            break;
+            case 0:
+                return;
+            default:
+                System.out.println("Opção inválida.");
+                break;
         }
     }
 
     public void inserirDadosPescaria() {
         System.out.println("Vamos cadastrar uma nova pescaria.");
-        System.out.print("Digite a data (dd/mm/yyyy): ");
-        String dateStr = scanner.nextLine();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate date = LocalDate.parse(dateStr, formatter);
+
+        LocalDate date = null;
+        while (date == null) {
+            System.out.print("Digite a data (dd/mm/yyyy): ");
+            String dateStr = scanner.nextLine();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            try {
+                date = LocalDate.parse(dateStr, formatter);
+            } catch (DateTimeParseException e) {
+                System.out.println("Formato de data inválido. Por favor, tente novamente.");
+            }
+        }
         System.out.print("Digite o local: ");
         String local = scanner.nextLine();
 
         // O usuário irá inserir quantos peixes pegou, rodamos a quantidade num for e
         // inserimos os peixes num array
-        System.out.println("Quantos peixes você pegou? ");
-        int qtdPeixes = scanner.nextInt();
+
+        int qtdPeixes = 0;
+        while (qtdPeixes < 1) {
+            System.out.print("Quantos peixes você pegou? ");
+            try {
+                qtdPeixes = scanner.nextInt();
+                if (qtdPeixes < 1) {
+                    System.out.println("A quantidade precisa ser de pelo menos 1.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Entrada inválida. Insira um número.");
+                scanner.next();
+            }
+        }
         scanner.nextLine();
         List<PeixeUnico> peixes = new ArrayList<>();
 
@@ -133,21 +158,21 @@ public class PescariaView implements View {
         scanner.nextLine();
 
         switch (opcao) {
-        case 1:
-            listarPeixesPorTamanho();
-            break;
-        case 2:
-            listarPeixesPorPeso();
-            break;
-        case 3:
-            listarPescariasPorData();
-            break;
-        case 4:
-            listarPescariasAgrupado();
-            break;
-        default:
-            System.out.println("Opção inválida.");
-            break;
+            case 1:
+                listarPeixesPorTamanho();
+                break;
+            case 2:
+                listarPeixesPorPeso();
+                break;
+            case 3:
+                listarPescariasPorData();
+                break;
+            case 4:
+                listarPescariasAgrupado();
+                break;
+            default:
+                System.out.println("Opção inválida.");
+                break;
         }
     }
 

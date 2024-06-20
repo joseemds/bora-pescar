@@ -10,6 +10,9 @@ import java.util.Scanner;
 public class LoginView implements View {
     private UsuarioService usuarioService = new UsuarioService();
     private Scanner scanner = new Scanner(System.in);
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_RESET = "\u001B[0m";
 
     @Override
     public void startView() {
@@ -32,7 +35,9 @@ public class LoginView implements View {
         try {
             return usuarioService.realizarLogin(nome, senha);
         } catch (DAOException e) {
-            System.err.println("Erro ao realizar login: " + e.getMessage());
+            System.err.println(ANSI_RED + "Erro ao realizar login: " + e.getMessage() + ANSI_RESET);
+
+            System.err.println();
             return null;
         }
     }

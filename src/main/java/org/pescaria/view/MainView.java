@@ -11,6 +11,10 @@ public class MainView implements View {
     private CadastroUsuarioView cadastroUsuarioView = new CadastroUsuarioView();
     private Scanner scanner = new Scanner(System.in);
 
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+
     @Override
     public void startView() {
         while (true) {
@@ -33,25 +37,25 @@ public class MainView implements View {
         scanner.nextLine();
 
         switch (opcao) {
-        case 1:
-            loginView.startView();
-            break;
-        case 2:
-            cadastroUsuarioView.startView();
-            break;
-        case 0:
-            System.out.println("Até mais!");
-            System.exit(0);
-            break;
-        default:
-            System.out.println("Opção inválida.");
-            break;
+            case 1:
+                loginView.startView();
+                break;
+            case 2:
+                cadastroUsuarioView.startView();
+                break;
+            case 0:
+                System.out.println("Até mais!");
+                System.exit(0);
+                break;
+            default:
+                System.out.println("Opção inválida.");
+                break;
         }
     }
 
     private void showMainMenu() {
         System.out.println("================================");
-        System.out.println("Bem-vindo ao Bora Pescaria");
+        System.out.println(ANSI_BLUE + "Bem-vindo ao Bora Pescaria" + ANSI_RESET);
         System.out.println("1 - Cadastrar Peixe");
         System.out.println("2 - Menu de Pesca");
         System.out.println("3 - Listar Peixes no sistema");
@@ -62,31 +66,31 @@ public class MainView implements View {
         scanner.nextLine();
 
         switch (opcao) {
-        case 1:
-            if (AuthService.isAutenticado() && AuthService.isAdmin()) {
-                cadastroPeixeView = new CadastroPeixeView();
-                cadastroPeixeView.startView();
-            } else {
-                System.out.println("Apenas administradores podem cadastrar peixes.");
-            }
-            break;
-        case 2:
-            pescariaView.startView();
-            break;
-        case 3:
-            peixeView.startView();
-            break;
-        case 4:
-            AuthService.logout();
-            System.out.println("Logout realizado com sucesso.");
-            break;
-        case 0:
-            System.out.println("Até mais!");
-            System.exit(0);
-            break;
-        default:
-            System.out.println("Opção inválida.");
-            break;
+            case 1:
+                if (AuthService.isAutenticado() && AuthService.isAdmin()) {
+                    cadastroPeixeView = new CadastroPeixeView();
+                    cadastroPeixeView.startView();
+                } else {
+                    System.out.println("Apenas administradores podem cadastrar peixes.");
+                }
+                break;
+            case 2:
+                pescariaView.startView();
+                break;
+            case 3:
+                peixeView.startView();
+                break;
+            case 4:
+                AuthService.logout();
+                System.out.println("Logout realizado com sucesso.");
+                break;
+            case 0:
+                System.out.println("Até mais!");
+                System.exit(0);
+                break;
+            default:
+                System.out.println("Opção inválida.");
+                break;
         }
     }
 }
